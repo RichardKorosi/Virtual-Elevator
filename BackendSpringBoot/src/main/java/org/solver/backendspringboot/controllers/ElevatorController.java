@@ -36,8 +36,6 @@ public class ElevatorController {
         return new InfoWrapper(elevator, floors, operatorCurrentFloor);
     }
 
-
-
     @GetMapping("/elevatorInfo")
     public Elevator getElevatorInfo() {
         return elevator;
