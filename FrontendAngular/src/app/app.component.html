@@ -1,9 +1,25 @@
-<main class="main">
-  <div class="oberverFloorWrapper">
-    <button *ngFor="let floor of floors; let i = index" 
-    [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === floor.floorNumber ? 'blue' : 'yellow'}" 
-    class="floor-button" (click)="changeOperatorFloor(floor.floorNumber)">
-    Floor {{ floor.floorNumber }}
-    </button>
-  </div>
-</main>
+<div id="main">
+  <nav class ="left">  
+    <div class="oberverFloorWrapper">
+      <button *ngFor="let floor of floors; let i = index" 
+      [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === floor.floorNumber ? 'lightpink' : 'cyan'}" 
+      class="floor-button" (click)="changeOperatorFloor(floor.floorNumber)">
+      Floor {{ floor.floorNumber }}
+      </button>
+    </div>
+  </nav>
+  <nav class ="right">  
+    <div class="elevatorFloorWrapper">
+      <button *ngFor="let floor of floors; let i = index" 
+      [ngStyle]="{'background-color': elevator.currentFloor === floor.floorNumber ? 'yellowgreen' : 'wheat'}" 
+      class="floor-button">
+      Floor {{ floor.floorNumber }}
+      </button>
+      <button [ngStyle]="{'background-color' : elevator.movement > 0 ? 'yellowgreen' : 'wheat'}">↑</button>
+      <button [ngStyle]="{'background-color' : elevator.movement < 0 ? 'yellowgreen' : 'wheat'}">↓</button>
+      <button [ngStyle]="{'background-color' : elevator.movement === 0 ? 'yellowgreen' : 'wheat'}">🛑</button>
+      <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
+    </div>
+    
+  </nav>
+</div>

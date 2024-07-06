@@ -45,18 +45,13 @@ export class AppComponent {
         floor.isTarget = data.floors[i].isTarget;
         this.floors.push(floor);
       }
-     
-
-      console.log(this.floors);
 
       this.elevator.movement = data.elevator.movement;
-      this.elevator.isDoorOpen = data.elevator.isDoorOpen;
+      this.elevator.isDoorOpen = data.elevator.doorOpen;
       this.elevator.peopleInside = data.elevator.peopleInside;
       this.elevator.currentFloor = data.elevator.currentFloor;
       this.elevator.floors = data.elevator.floors;
-
-      console.log(this.elevator);
-
+      
       this.operatorCurrentFloor.floorNumber = data.operatorCurrentFloor.floorNumber;
       this.operatorCurrentFloor.continueUp = data.operatorCurrentFloor.continueUp;
       this.operatorCurrentFloor.continueDown = data.operatorCurrentFloor.continueDown;
