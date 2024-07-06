@@ -6,11 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ElevatorInfoService {
-  private infoUrl = 'http://localhost:8080/elevatorInfo';
+  private elevatorInfoUrl = 'http://localhost:8080/elevatorInfo';
+  private initialInfo = 'http://localhost:8080/initialInfo';
 
   constructor(private http: HttpClient) { }
 
   getElevatorInfo(): Observable<any> {
-    return this.http.get<any>(this.infoUrl);
+    return this.http.get<any>(this.elevatorInfoUrl);
   }
+
+  getInitialInfo(): Observable<any> {
+    return this.http.get<any>(this.initialInfo);
+  }
+
 }

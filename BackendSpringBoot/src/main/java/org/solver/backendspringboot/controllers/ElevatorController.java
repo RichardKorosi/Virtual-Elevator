@@ -29,8 +29,15 @@ public class ElevatorController {
         }
     }
 
+    @GetMapping("/initialInfo")
+    public List<Floor> getInitialInfo() {
+        return floors;
+    }
+
     @GetMapping("/elevatorInfo")
     public Elevator getElevatorInfo() {
         return elevator;
     }
+
+
 }
