@@ -53,14 +53,11 @@ public class ElevatorController {
         floors.get(floorNumber).setOperatorFloor(true);
         return floors;
     }
-//
-//    @GetMapping("/callElevator/{floorNumber}")
-//    public Elevator callElevator(@PathVariable int floorNumber) {
-//    if (!elevator.getFloors().contains(floors.get(floorNumber)))
-//    {
-//        elevator.getFloors().add(floors.get(floorNumber));
-//    }
-//    return elevator;
-//    }
+
+    @GetMapping("/callElevator/{floorNumber}")
+    public List<Floor> callElevator(@PathVariable int floorNumber) {
+        floors.get(floorNumber).setSummoned(true);
+        return floors;
+    }
 
 }

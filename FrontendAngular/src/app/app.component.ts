@@ -53,27 +53,23 @@ export class AppComponent {
 
   changeOperatorFloor(floor: number): void {
     this.elevatorInfoService.changeOperatorFloor(floor).subscribe(floors => {
-      console.log("SENDING:", this.operatorCurrentFloor.floorNumber)
       for (let i = 0; i < this.floors.length; i++) {
         this.floors[i].isOperatorFloor = floors[i].operatorFloor;
         if (this.floors[i].isOperatorFloor) {
           this.operatorCurrentFloor = this.floors[i];
         }
       }
-      console.log(floors);
+      console.log(this.floors);
     });
   }
   
 
-  // callElevator() : void {
-  //   this.elevatorInfoService.callElevator(this.operatorCurrentFloor.floorNumber).subscribe(elev => {
-  //     this.elevator.movement = elev.movement;
-  //     this.elevator.isDoorOpen = elev.doorOpen;
-  //     this.elevator.peopleInside = elev.peopleInside;
-  //     this.elevator.currentFloor = elev.currentFloor;
-
-  //     console.log(this.elevator);
-  //     console.log(this.operatorCurrentFloor);
-  //   });
-  // }
+  callElevator() : void {
+    this.elevatorInfoService.callElevator(this.operatorCurrentFloor.floorNumber).subscribe(floors => {
+      for (let i = 0; i < this.floors.length; i++) {
+        this.floors[i].isSummoned = floors[i].summoned;
+      }
+      console.log(this.floors);
+    });
+  }
 }

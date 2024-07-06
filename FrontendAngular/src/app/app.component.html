@@ -20,9 +20,8 @@
       <button [ngStyle]="{'background-color' : elevator.movement === 0 ? 'yellowgreen' : 'wheat'}">🛑</button>
       <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
     </div>
-    <!-- <div>
-      <button (click)="callElevator()" class="callButton" [ngStyle]="{'background-color': elevator.floors.includes(operatorCurrentFloor) ? 'yellowgreen' : 'wheat'}">CALL</button>
-    </div> -->
-    
+    <div>
+      <button (click)="callElevator()" class="callButton" [ngStyle]="{'background-color': operatorCurrentFloor.isSummoned ? 'yellowgreen' : 'wheat'}">CALL</button>
+    </div>
   </nav>
 </div>
