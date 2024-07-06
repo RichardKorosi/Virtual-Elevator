@@ -29,7 +29,7 @@
         <button (click)="callElevator(-1)" class="callButton" 
         [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
         </button>
-        <button (click)="enterElevator()">ENTER THE ELEVATOR</button>
+        <button (click)="enterElevator()" [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)">ENTER THE ELEVATOR</button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 1 ? 'block' : 'none'}">
       <button (click)="callElevator(1)" class="callButton" 
