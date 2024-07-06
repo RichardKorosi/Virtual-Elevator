@@ -16,7 +16,7 @@ public class Elevator {
 
     public Elevator() {
         this.movement = 0;
-        this.isDoorOpen = false;
+        this.isDoorOpen = true;
         this.peopleInside = 0;
         this.currentFloor = 0;
     }
