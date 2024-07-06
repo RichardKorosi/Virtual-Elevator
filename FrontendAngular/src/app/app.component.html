@@ -32,13 +32,14 @@
         <button (click)="enterElevator()" [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)">ENTER THE ELEVATOR</button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 1 ? 'block' : 'none'}">
-      <button (click)="callElevator(1)" class="callButton" 
-        [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}">↑
+      <button *ngFor="let floor of floors; let i = index" 
+      [ngStyle]="{'background-color': (floor.isSummoned === true || floor.isTarget === true) ? 'lightcoral' : 'lightblue'}" 
+      class="floor-button">
+      Floor {{ floor.floorNumber }}
       </button>
-      <button (click)="callElevator(-1)" class="callButton" 
-      [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
-      </button>
-      <button (click)="exitElevator()">EXIT THE ELEVATOR</button>
+      <button (click)="openDoor()">OPEN 🚪🚪</button>
+      <button (click)="closeDoor()">CLOSE 🚪🚪</button>
+      <button (click)="exitElevator()" [disabled]="!(elevator.isDoorOpen === true)">EXIT</button>
     </div>
   </nav>
 </div>

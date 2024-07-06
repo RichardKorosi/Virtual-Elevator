@@ -89,6 +89,18 @@ public class ElevatorController {
         return floors;
     }
 
+    @GetMapping("/openDoor")
+    public Elevator openDoor() {
+        elevator.setDoorOpen(true);
+        return elevator;
+    }
+
+    @GetMapping("/closeDoor")
+    public Elevator closeDoor() {
+        elevator.setDoorOpen(false);
+        return elevator;
+    }
+
 
 
 }

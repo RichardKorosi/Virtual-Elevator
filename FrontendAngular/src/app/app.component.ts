@@ -96,4 +96,19 @@ export class AppComponent {
     location.reload();    
   }
 
+  openDoor() : void {
+    this.elevatorInfoService.openDoor().subscribe(elev => {
+      this.elevator.isDoorOpen = elev.doorOpen;
+    }
+    );
+  }
+
+  closeDoor() : void {
+    this.elevatorInfoService.closeDoor().subscribe(elev => {
+      this.elevator.isDoorOpen = elev.doorOpen;
+    }
+    );
+  }
+
+
 }

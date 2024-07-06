@@ -42,6 +42,14 @@ export class ElevatorInfoService {
   exitElevator(): Observable<any> {
     return this.http.get<any>(this.baseURL+"/exitElevator");
   }
+
+  openDoor(): Observable<any> {
+    return this.http.get<any>(this.baseURL+"/openDoor");
+  }
+
+  closeDoor(): Observable<any> {
+    return this.http.get<any>(this.baseURL+"/closeDoor");
+  }
   
 
 
