@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ElevatorInfoService } from './elevator-info.service';
 import { NONE_TYPE } from '@angular/compiler';
+import { ElevatorComponent } from './elevator/elevator.component';
+import { FloorComponent } from './floor/floor.component';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,16 @@ import { NONE_TYPE } from '@angular/compiler';
 export class AppComponent {
   title = 'FrontendAngular';
 
-  elevator = NONE_TYPE;
-  floors = [];
-  operatorCurrentFloor = 0;
+  floors: FloorComponent[] = [];
+  elevator : ElevatorComponent;
+  operatorCurrentFloor : FloorComponent;
 
 
   constructor(private elevatorInfoService: ElevatorInfoService
   ){
+    this.floors = new Array();
+    this.elevator = new ElevatorComponent();
+    this.operatorCurrentFloor = new FloorComponent();
     this.getInitialInfo();
   }
 
@@ -29,13 +34,32 @@ export class AppComponent {
 
   getInitialInfo(): void {
     this.elevatorInfoService.getInitialInfo().subscribe(data => {
+
       console.log(data);
-      this.elevator = data.elevator;
-      this.floors = data.floors;
-      this.operatorCurrentFloor = data.operatorCurrentFloor;
-      console.log("Elevator", this.elevator);
-      console.log("Floors", this.floors);
-      console.log("OperatorCurrent", this.operatorCurrentFloor);
+
+      for (let i = 0; i < data.floors.length; i++) {
+        let floor = new FloorComponent();
+        floor.floorNumber = data.floors[i].floorNumber;
+        floor.continueUp = data.floors[i].continueUp;
+        floor.continueDown = data.floors[i].continueDown;
+        floor.isTarget = data.floors[i].isTarget;
+        this.floors.push(floor);
+      }
+
+      console.log(this.floors);
+
+      this.elevator.movement = data.elevator.movement;
+      this.elevator.isDoorOpen = data.elevator.isDoorOpen;
+      this.elevator.peopleInside = data.elevator.peopleInside;
+      this.elevator.currentFloor = data.elevator.currentFloor;
+      this.elevator.floors = data.elevator.floors;
+
+      console.log(this.elevator);
+
+      this.operatorCurrentFloor.floorNumber = data.operatorCurrentFloor.floorNumber;
+      this.operatorCurrentFloor.continueUp = data.operatorCurrentFloor.continueUp;
+      this.operatorCurrentFloor.continueDown = data.operatorCurrentFloor.continueDown;
+      this.operatorCurrentFloor.isTarget = data.operatorCurrentFloor.isTarget;
     });
   }
 }
