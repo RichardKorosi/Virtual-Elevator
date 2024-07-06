@@ -22,4 +22,9 @@ public class ElevatorController {
             floors.add(floor);
         }
     }
+
+    @GetMapping("/elevatorInfo")
+    public Elevator getElevatorInfo() {
+        return elevator;
+    }
 }
