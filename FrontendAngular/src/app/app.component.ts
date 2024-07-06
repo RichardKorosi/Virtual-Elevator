@@ -110,5 +110,13 @@ export class AppComponent {
     );
   }
 
+  chooseTarget(floor: number) : void {
+    this.elevatorInfoService.chooseTarget(floor).subscribe(data_floors => {
+      for (let i = 0; i < this.floors.length; i++) {
+        this.floors[i].isTarget = data_floors[i].target;
+      }
+    });
+  }
+
 
 }

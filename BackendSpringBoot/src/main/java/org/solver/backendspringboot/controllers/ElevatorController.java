@@ -101,6 +101,12 @@ public class ElevatorController {
         return elevator;
     }
 
+    @GetMapping("/chooseTarget/{floorNumber}")
+    public List<Floor> choseTarget(@PathVariable int floorNumber) {
+        floors.get(floorNumber).setTarget(true);
+        return floors;
+    }
+
 
 
 }

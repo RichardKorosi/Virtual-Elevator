@@ -50,6 +50,10 @@ export class ElevatorInfoService {
   closeDoor(): Observable<any> {
     return this.http.get<any>(this.baseURL+"/closeDoor");
   }
+
+  chooseTarget(floor: number): Observable<any> {
+    return this.http.get<any>(this.baseURL+"/chooseTarget/"+floor);
+  }
   
 
 

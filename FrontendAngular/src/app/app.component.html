@@ -29,12 +29,12 @@
         <button (click)="callElevator(-1)" class="callButton" 
         [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
         </button>
-        <button (click)="enterElevator()" [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)">ENTER THE ELEVATOR</button>
+        <button (click)="enterElevator()" [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)">ENTER</button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 1 ? 'block' : 'none'}">
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': (floor.isSummoned === true || floor.isTarget === true) ? 'lightcoral' : 'lightblue'}" 
-      class="floor-button">
+      class="floor-button" (click)="chooseTarget(floor.floorNumber)">
       Floor {{ floor.floorNumber }}
       </button>
       <button (click)="openDoor()">OPEN 🚪🚪</button>
