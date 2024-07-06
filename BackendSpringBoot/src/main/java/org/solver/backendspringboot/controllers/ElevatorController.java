@@ -14,6 +14,7 @@ import java.util.List;
 public class ElevatorController {
     Elevator elevator;
     List<Floor> floors;
+    Floor operatorCurrentFloor;
 
     public ElevatorController() {
         elevator = new Elevator();
@@ -21,6 +22,9 @@ public class ElevatorController {
         for (int i = 0; i < 10; i++) {
             Floor floor = new Floor();
             floor.setFloorNumber(i);
+            if (i == 0) {
+                operatorCurrentFloor = floor;
+            }
             floors.add(floor);
         }
     }
