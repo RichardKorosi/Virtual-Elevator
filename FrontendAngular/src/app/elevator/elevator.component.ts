@@ -11,14 +11,12 @@ export class ElevatorComponent {
   isDoorOpen: boolean;
   peopleInside: number;
   currentFloor: number;
-  floors: FloorComponent[];
 
   constructor() {
     this.movement = 0;
     this.isDoorOpen = false;
     this.peopleInside = 0;
     this.currentFloor = 0;
-    this.floors = [];
   }
 
 }

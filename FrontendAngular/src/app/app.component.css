@@ -2,8 +2,19 @@
   padding-top: 1rem;
   padding-left: 1rem;
   display: grid;
-  width: 100%;
+  width: full;
   height: 100%;
   grid-template-rows: 100% 100%;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 5% 80%;
+}
+
+.right{
+  margin-left: 10px;
+}
+
+.left{
+  margin-right: 10px;
+}
+.callButton {
+  width: 20%;
 }

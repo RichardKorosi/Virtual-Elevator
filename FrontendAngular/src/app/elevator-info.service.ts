@@ -9,6 +9,7 @@ export class ElevatorInfoService {
   private elevatorInfoUrl = 'http://localhost:8080/elevatorInfo';
   private initialInfoUrl = 'http://localhost:8080/initialInfo';
   private changeOperatorFloorUrl = 'http://localhost:8080/changeOperatorFloor';
+  private callElevatorUrl = 'http://localhost:8080/callElevator';
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,10 @@ export class ElevatorInfoService {
 
   changeOperatorFloor(floor: number): Observable<any> {
     return this.http.get<any>(this.changeOperatorFloorUrl+"/"+floor);
+  }
+
+  callElevator(floor: number): Observable<any> {
+    return this.http.get<any>(this.callElevatorUrl+"/"+floor);
   }
   
 

@@ -10,11 +10,15 @@ export class FloorComponent {
   continueUp: boolean;
   continueDown: boolean;
   isTarget: boolean;
+  isSummoned: boolean;
+  isOperatorFloor: boolean;
 
   constructor() {
     this.floorNumber = 0;
     this.continueUp = false;
     this.continueDown = false;
     this.isTarget = false;
+    this.isSummoned = false;
+    this.isOperatorFloor = false;
   }
 }

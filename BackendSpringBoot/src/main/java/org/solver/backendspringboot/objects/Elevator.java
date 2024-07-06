@@ -3,6 +3,7 @@ package org.solver.backendspringboot.objects;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,7 +13,6 @@ public class Elevator {
     private boolean isDoorOpen;
     private int peopleInside;
     private int currentFloor;
-    private List<Floor> floors;
 
     public Elevator() {
         this.movement = 0;

@@ -10,10 +10,8 @@ import java.util.List;
 public class InfoWrapper{
     private Elevator elevator;
     private List<Floor> floors;
-    private Floor operatorCurrentFloor;
-    public InfoWrapper(Elevator elevator, List<Floor> floors, Floor operatorCurrentFloor){
+    public InfoWrapper(Elevator elevator, List<Floor> floors){
         this.elevator = elevator;
         this.floors = floors;
-        this.operatorCurrentFloor = operatorCurrentFloor;
     }
 }

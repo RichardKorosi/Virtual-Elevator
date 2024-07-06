@@ -16,7 +16,6 @@ import java.util.List;
 public class ElevatorController {
     Elevator elevator;
     List<Floor> floors;
-    Floor operatorCurrentFloor;
 
     public ElevatorController() {
         elevator = new Elevator();
@@ -25,7 +24,7 @@ public class ElevatorController {
             Floor floor = new Floor();
             floor.setFloorNumber(i);
             if (i == 0) {
-                operatorCurrentFloor = floor;
+                floor.setOperatorFloor(true);
             }
             floors.add(floor);
         }
@@ -33,7 +32,7 @@ public class ElevatorController {
 
     @GetMapping("/initialInfo")
     public InfoWrapper getInitialInfo() {
-        return new InfoWrapper(elevator, floors, operatorCurrentFloor);
+        return new InfoWrapper(elevator, floors);
     }
 
     @GetMapping("/elevatorInfo")
@@ -41,14 +40,27 @@ public class ElevatorController {
         return elevator;
     }
 
-    @GetMapping("/changeOperatorFloor/{floorNumber}")
-    public Floor changeOperatorFloor(@PathVariable int floorNumber) {
-        if (floorNumber >= 0 && floorNumber < floors.size()) {
-            operatorCurrentFloor = floors.get(floorNumber);
-            return operatorCurrentFloor;
-        } else {
-            throw new IllegalArgumentException("Invalid floor number: " + floorNumber);
-        }
+    @GetMapping("/floorsInfo")
+    public List<Floor> getFloorsInfo() {
+        return floors;
     }
+
+    @GetMapping("/changeOperatorFloor/{floorNumber}")
+    public List<Floor> changeOperatorFloor(@PathVariable int floorNumber) {
+        for (Floor floor : floors) {
+            floor.setOperatorFloor(false);
+        }
+        floors.get(floorNumber).setOperatorFloor(true);
+        return floors;
+    }
+//
+//    @GetMapping("/callElevator/{floorNumber}")
+//    public Elevator callElevator(@PathVariable int floorNumber) {
+//    if (!elevator.getFloors().contains(floors.get(floorNumber)))
+//    {
+//        elevator.getFloors().add(floors.get(floorNumber));
+//    }
+//    return elevator;
+//    }
 
 }
