@@ -26,8 +26,8 @@ export class ElevatorInfoService {
     return this.http.get<any>(this.changeOperatorFloorUrl+"/"+floor);
   }
 
-  callElevator(floor: number): Observable<any> {
-    return this.http.get<any>(this.callElevatorUrl+"/"+floor);
+  callElevator(floor: number, direction: number): Observable<any> {
+    return this.http.get<any>(this.callElevatorUrl+"/"+floor+"/"+direction);
   }
 
   elevatorTick(): Observable<any> {

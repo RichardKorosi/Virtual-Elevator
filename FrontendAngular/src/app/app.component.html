@@ -21,7 +21,12 @@
       <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
     </div>
     <div>
-      <button (click)="callElevator()" class="callButton" [ngStyle]="{'background-color': operatorCurrentFloor.isSummoned ? 'yellowgreen' : 'wheat'}">CALL</button>
+      <button (click)="callElevator(1)" class="callButton" 
+        [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}">↑
+      </button>
+      <button (click)="callElevator(-1)" class="callButton" 
+      [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
+      </button>
     </div>
   </nav>
 </div>

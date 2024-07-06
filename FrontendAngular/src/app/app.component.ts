@@ -64,12 +64,13 @@ export class AppComponent {
   }
   
 
-  callElevator() : void {
-    this.elevatorInfoService.callElevator(this.operatorCurrentFloor.floorNumber).subscribe(floors => {
+  callElevator(direction: number) : void {
+    this.elevatorInfoService.callElevator(this.operatorCurrentFloor.floorNumber, direction).subscribe(data_floors => {
       for (let i = 0; i < this.floors.length; i++) {
-        this.floors[i].isSummoned = floors[i].summoned;
+        this.floors[i].isSummoned = data_floors[i].summoned;
+        this.floors[i].continueUp = data_floors[i].continueUp;
+        this.floors[i].continueDown = data_floors[i].continueDown;
       }
-      console.log(this.floors);
     });
   }
 
