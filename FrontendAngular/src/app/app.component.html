@@ -1,7 +1,8 @@
 <main class="main">
-  <button (click)="getElevatorInfo()">Get Elevator Info</button>
-  <div *ngFor="let floor of floors; let i = index" 
-  [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === i ? 'blue' : 'yellow'}">
-  Floor {{ i }}
+  <div class="oberverFloorWrapper">
+    <button *ngFor="let floor of floors; let i = index" 
+    [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === i ? 'blue' : 'yellow'}" class="floor-button">
+    Floor {{ i }}
+    </button>
   </div>
 </main>

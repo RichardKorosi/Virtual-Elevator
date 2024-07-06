@@ -1,0 +1,13 @@
+.floor-button {
+    display: block;
+    width: 100%; /* Makes the button fill the container */
+    margin-bottom: 5px; /* Adds space between the buttons */
+  }
+
+.oberverFloorWrapper{
+    /* make it only 25% width of screen */
+    width: 5%;
+    /* make it float to the left */
+    float: left;
+
+}
