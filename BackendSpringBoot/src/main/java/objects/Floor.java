@@ -10,4 +10,11 @@ public class Floor {
     private boolean continueUp;
     private boolean continueDown;
     private boolean isTarget;
+
+    public Floor() {
+        this.floorNumber = 0;
+        this.continueUp = false;
+        this.continueDown = false;
+        this.isTarget = false;
+    }
 }
