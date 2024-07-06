@@ -1,4 +1,4 @@
-package objects;
+package org.solver.backendspringboot.objects;
 
 import lombok.Getter;
 import lombok.Setter;
