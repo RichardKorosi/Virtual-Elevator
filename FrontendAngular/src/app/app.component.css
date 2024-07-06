@@ -10,6 +10,9 @@
 
 .right{
   margin-left: 10px;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 2% 95%;
 }
 
 .left{

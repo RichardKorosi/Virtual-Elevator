@@ -30,6 +30,12 @@ public class ElevatorController {
         }
     }
 
+    @GetMapping("/elevatorTick")
+    public InfoWrapper elevatorTick() {
+//        check if elevator is at summoned floor
+        return new InfoWrapper(elevator, floors);
+    }
+
     @GetMapping("/initialInfo")
     public InfoWrapper getInitialInfo() {
         return new InfoWrapper(elevator, floors);
@@ -65,11 +71,24 @@ public class ElevatorController {
         return floors;
     }
 
-    @GetMapping("/elevatorTick")
-    public InfoWrapper elevatorTick() {
-//        check if elevator is at summoned floor
-
-        return new InfoWrapper(elevator, floors);
+    @GetMapping("/enterElevator")
+    public List<Floor> enterElevator() {
+        for (Floor floor : floors) {
+            floor.setOperatorFloor(false);
+        }
+        return floors;
     }
+
+    @GetMapping("/exitElevator")
+    public List<Floor> exitElevator() {
+        for (Floor floor : floors) {
+            if(floor.getFloorNumber() == elevator.getCurrentFloor()) {
+                floor.setOperatorFloor(true);
+            }
+        }
+        return floors;
+    }
+
+
 
 }

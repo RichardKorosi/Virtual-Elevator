@@ -6,32 +6,41 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ElevatorInfoService {
-  private elevatorInfoUrl = 'http://localhost:8080/elevatorInfo';
-  private initialInfoUrl = 'http://localhost:8080/initialInfo';
-  private changeOperatorFloorUrl = 'http://localhost:8080/changeOperatorFloor';
-  private callElevatorUrl = 'http://localhost:8080/callElevator';
-  private elevatorTickUrl = 'http://localhost:8080/elevatorTick';
+  private baseURL = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
+  // TODO:
+  elevatorTick(): Observable<any> {
+    return this.http.get<any>(this.baseURL + '/elevatorTick');
+  }
+
+  // GET INFOS
+
   getElevatorInfo(): Observable<any> {
-    return this.http.get<any>(this.elevatorInfoUrl);
+    return this.http.get<any>(this.baseURL + '/elevatorInfo');
   }
 
   getInitialInfo(): Observable<any> {
-    return this.http.get<any>(this.initialInfoUrl);
+    return this.http.get<any>(this.baseURL + '/initialInfo');
   }
 
+// WORKING WITH ELEVATOR
+
   changeOperatorFloor(floor: number): Observable<any> {
-    return this.http.get<any>(this.changeOperatorFloorUrl+"/"+floor);
+    return this.http.get<any>(this.baseURL+"/changeOperatorFloor/"+floor);
   }
 
   callElevator(floor: number, direction: number): Observable<any> {
-    return this.http.get<any>(this.callElevatorUrl+"/"+floor+"/"+direction);
+    return this.http.get<any>(this.baseURL+"/callElevator/"+floor+"/"+direction);
   }
 
-  elevatorTick(): Observable<any> {
-    return this.http.get<any>(this.elevatorTickUrl);
+  enterElevator(): Observable<any> {
+    return this.http.get<any>(this.baseURL+"/enterElevator");
+  }
+
+  exitElevator(): Observable<any> {
+    return this.http.get<any>(this.baseURL+"/exitElevator");
   }
   
 

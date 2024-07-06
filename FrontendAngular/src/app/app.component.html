@@ -1,6 +1,7 @@
 <div id="main">
+
   <nav class ="left">  
-    <div class="oberverFloorWrapper">
+    <div [ngStyle]="{'visibility' : view === 0 ? 'visible' : 'hidden'}">
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === floor.floorNumber ? 'lightpink' : 'cyan'}" 
       class="floor-button" (click)="changeOperatorFloor(floor.floorNumber)">
@@ -8,8 +9,9 @@
       </button>
     </div>
   </nav>
+
   <nav class ="right">  
-    <div class="elevatorFloorWrapper">
+    <div class="elevatorFloorWrapper" style="visibility: visible;">
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': elevator.currentFloor === floor.floorNumber ? 'yellowgreen' : 'wheat'}" 
       class="floor-button">
@@ -20,13 +22,23 @@
       <button [ngStyle]="{'background-color' : elevator.movement === 0 ? 'yellowgreen' : 'wheat'}">🛑</button>
       <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
     </div>
-    <div>
+    <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 0 ? 'block' : 'none'}">
+        <button (click)="callElevator(1)" class="callButton" 
+          [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}">↑
+        </button>
+        <button (click)="callElevator(-1)" class="callButton" 
+        [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
+        </button>
+        <button (click)="enterElevator()">ENTER THE ELEVATOR</button>
+    </div>
+    <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 1 ? 'block' : 'none'}">
       <button (click)="callElevator(1)" class="callButton" 
         [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}">↑
       </button>
       <button (click)="callElevator(-1)" class="callButton" 
       [ngStyle]="{'background-color': (operatorCurrentFloor.isSummoned && operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
       </button>
+      <button (click)="exitElevator()">EXIT THE ELEVATOR</button>
     </div>
   </nav>
 </div>

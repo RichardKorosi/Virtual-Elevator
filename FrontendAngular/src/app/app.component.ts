@@ -15,12 +15,14 @@ export class AppComponent {
   floors: FloorComponent[] = [];
   elevator : ElevatorComponent;
   operatorCurrentFloor!: FloorComponent;
+  view : number;
 
 
   constructor(private elevatorInfoService: ElevatorInfoService
   ){
     this.floors = new Array();
     this.elevator = new ElevatorComponent();
+    this.view = 0;
 
     this.elevatorInfoService.getInitialInfo().subscribe(data => {
 
@@ -51,6 +53,11 @@ export class AppComponent {
     }, 10000); // Call increment() every 2 seconds
   }
 
+  elevatorTick() : void {
+    this.elevatorInfoService.elevatorTick().subscribe(data => {
+    });
+  }
+
   changeOperatorFloor(floor: number): void {
     this.elevatorInfoService.changeOperatorFloor(floor).subscribe(floors => {
       for (let i = 0; i < this.floors.length; i++) {
@@ -74,8 +81,19 @@ export class AppComponent {
     });
   }
 
-  elevatorTick() : void {
-    this.elevatorInfoService.elevatorTick().subscribe(data => {
-    });
+  enterElevator() : void {
+    this.elevatorInfoService.enterElevator().subscribe(data_floors => {
+      for (let i = 0; i < this.floors.length; i++) {
+        this.floors[i].isOperatorFloor = data_floors[i].operatorFloor;
+      }
+    }
+    );
+    this.view = 1;
   }
+
+  exitElevator() : void {
+    this.elevatorInfoService.exitElevator().subscribe();
+    location.reload();    
+  }
+
 }
