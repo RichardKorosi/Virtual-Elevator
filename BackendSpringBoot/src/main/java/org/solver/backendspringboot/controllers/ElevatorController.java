@@ -60,4 +60,11 @@ public class ElevatorController {
         return floors;
     }
 
+    @GetMapping("/elevatorTick")
+    public InfoWrapper elevatorTick() {
+//        check if elevator is at summoned floor
+
+        return new InfoWrapper(elevator, floors);
+    }
+
 }

@@ -45,11 +45,11 @@ export class AppComponent {
     });
   }
 
-  // ngOnInit(): void {
-  //   setInterval(() => {
-  //     this.updateElevator();
-  //   }, 10000); // Call increment() every 2 seconds
-  // }
+  ngOnInit(): void {
+    setInterval(() => {
+      // this.elevatorTick();
+    }, 10000); // Call increment() every 2 seconds
+  }
 
   changeOperatorFloor(floor: number): void {
     this.elevatorInfoService.changeOperatorFloor(floor).subscribe(floors => {
@@ -59,7 +59,7 @@ export class AppComponent {
           this.operatorCurrentFloor = this.floors[i];
         }
       }
-      console.log(this.floors);
+      console.log(this.operatorCurrentFloor.floorNumber);
     });
   }
   
@@ -70,6 +70,11 @@ export class AppComponent {
         this.floors[i].isSummoned = floors[i].summoned;
       }
       console.log(this.floors);
+    });
+  }
+
+  elevatorTick() : void {
+    this.elevatorInfoService.elevatorTick().subscribe(data => {
     });
   }
 }
