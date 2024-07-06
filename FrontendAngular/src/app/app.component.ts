@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ElevatorInfoService } from './elevator-info.service';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { ElevatorInfoService } from './elevator-info.service';
 })
 export class AppComponent {
   title = 'FrontendAngular';
-  noFloors = 0;
+
+  elevator = NONE_TYPE;
+  floors = [];
   operatorCurrentFloor = 0;
 
 
@@ -25,11 +28,14 @@ export class AppComponent {
   }
 
   getInitialInfo(): void {
-    this.elevatorInfoService.getInitialInfo().subscribe(floors => {
-      this.noFloors = floors.length;
-      this.operatorCurrentFloor = floors[0].floorNumber;
-      console.log(this.noFloors, this.operatorCurrentFloor);
-
+    this.elevatorInfoService.getInitialInfo().subscribe(data => {
+      console.log(data);
+      this.elevator = data.elevator;
+      this.floors = data.floors;
+      this.operatorCurrentFloor = data.operatorCurrentFloor;
+      console.log("Elevator", this.elevator);
+      console.log("Floors", this.floors);
+      console.log("OperatorCurrent", this.operatorCurrentFloor);
     });
   }
 }

@@ -4,10 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ElevatorComponent } from './elevator/elevator.component';
+import { FloorComponent } from './floor/floor.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ElevatorComponent,
+    FloorComponent
   ],
   imports: [
     BrowserModule,

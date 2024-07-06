@@ -1,5 +1,6 @@
 package org.solver.backendspringboot.controllers;
 
+import lombok.Getter;
 import org.solver.backendspringboot.objects.Elevator;
 import org.solver.backendspringboot.objects.Floor;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,14 +31,15 @@ public class ElevatorController {
     }
 
     @GetMapping("/initialInfo")
-    public List<Floor> getInitialInfo() {
-        return floors;
+    public InfoWrapper getInitialInfo() {
+        return new InfoWrapper(elevator, floors, operatorCurrentFloor);
     }
+
+
 
     @GetMapping("/elevatorInfo")
     public Elevator getElevatorInfo() {
         return elevator;
     }
-
 
 }
