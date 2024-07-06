@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElevatorInfoService } from './elevator-info.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FrontendAngular';
+
+  constructor(private elevatorInfoService: ElevatorInfoService
+  ){}
+
+  getElevatorInfo(): void {
+    this.elevatorInfoService.getElevatorInfo().subscribe(data => {
+      console.log(data);
+    });
+  }
 }
