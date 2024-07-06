@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ElevatorInfoService {
   private elevatorInfoUrl = 'http://localhost:8080/elevatorInfo';
-  private initialInfo = 'http://localhost:8080/initialInfo';
+  private initialInfoUrl = 'http://localhost:8080/initialInfo';
+  private changeOperatorFloorUrl = 'http://localhost:8080/changeOperatorFloor/{floor}';
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +17,13 @@ export class ElevatorInfoService {
   }
 
   getInitialInfo(): Observable<any> {
-    return this.http.get<any>(this.initialInfo);
+    return this.http.get<any>(this.initialInfoUrl);
   }
+
+  changeOperatorFloor(floor: number): Observable<any> {
+    return this.http.post<any>(this.changeOperatorFloorUrl, { floor });
+  }
+  
+
 
 }

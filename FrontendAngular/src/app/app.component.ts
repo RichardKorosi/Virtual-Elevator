@@ -37,7 +37,7 @@ export class AppComponent {
 
       console.log(data);
 
-      for (let i = 0; i < data.floors.length; i++) {
+      for (let i = data.floors.length - 1; i >= 0; i--) {
         let floor = new FloorComponent();
         floor.floorNumber = data.floors[i].floorNumber;
         floor.continueUp = data.floors[i].continueUp;
@@ -45,6 +45,7 @@ export class AppComponent {
         floor.isTarget = data.floors[i].isTarget;
         this.floors.push(floor);
       }
+     
 
       console.log(this.floors);
 
@@ -60,6 +61,15 @@ export class AppComponent {
       this.operatorCurrentFloor.continueUp = data.operatorCurrentFloor.continueUp;
       this.operatorCurrentFloor.continueDown = data.operatorCurrentFloor.continueDown;
       this.operatorCurrentFloor.isTarget = data.operatorCurrentFloor.isTarget;
+    });
+  }
+
+  changeOperatorFloor(floor: number): void {
+    this.elevatorInfoService.changeOperatorFloor(floor).subscribe(floor => {
+      this.operatorCurrentFloor.floorNumber = floor.floorNumber;
+      this.operatorCurrentFloor.continueUp = floor.continueUp;
+      this.operatorCurrentFloor.continueDown = floor.continueDown;
+      this.operatorCurrentFloor.isTarget = floor.isTarget;      
     });
   }
 }

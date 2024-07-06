@@ -1,8 +1,9 @@
 <main class="main">
   <div class="oberverFloorWrapper">
     <button *ngFor="let floor of floors; let i = index" 
-    [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === i ? 'blue' : 'yellow'}" class="floor-button">
-    Floor {{ i }}
+    [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === floor.floorNumber ? 'blue' : 'yellow'}" 
+    class="floor-button" (click)="changeOperatorFloor(floor.floorNumber)">
+    Floor {{ floor.floorNumber }}
     </button>
   </div>
 </main>
