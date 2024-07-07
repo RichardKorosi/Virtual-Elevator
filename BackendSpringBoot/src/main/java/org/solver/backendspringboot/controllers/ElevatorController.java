@@ -53,7 +53,6 @@ public class ElevatorController {
                 floors.get(elevator.getCurrentFloor()).setTarget(false);
                 floors.get(elevator.getCurrentFloor()).setContinueUp(false);
                 elevator.setDoorOpen(true);
-                System.out.println("HERE");
                 return new InfoWrapper(elevator, floors);
             }
 
@@ -63,7 +62,6 @@ public class ElevatorController {
                 floors.get(elevator.getCurrentFloor()).setContinueUp(false);
                 floors.get(elevator.getCurrentFloor()).setContinueDown(false);
                 elevator.setDoorOpen(true);
-                System.out.println("HERE2");
                 return new InfoWrapper(elevator, floors);
             }
 
@@ -106,7 +104,6 @@ public class ElevatorController {
         }
         return new InfoWrapper(elevator, floors);
     }
-
 
     @GetMapping("/initialInfo")
     public InfoWrapper getInitialInfo() {
@@ -177,7 +174,5 @@ public class ElevatorController {
         floors.get(floorNumber).setTarget(true);
         return floors;
     }
-
-
 
 }

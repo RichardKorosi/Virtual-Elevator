@@ -56,7 +56,6 @@ public class ElevatorService {
                     furthestFloor = floor.getFloorNumber();
                 }
             }
-            System.out.println(furthestFloor);
             return furthestFloor;
         }
         return elevator.getCurrentFloor();
