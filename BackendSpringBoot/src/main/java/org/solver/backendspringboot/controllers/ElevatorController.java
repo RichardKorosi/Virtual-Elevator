@@ -62,7 +62,6 @@ public class ElevatorController {
 
     @GetMapping("/callElevator/{floorNumber}/{direction}")
     public List<Floor> callElevator(@PathVariable int floorNumber, @PathVariable int direction) {
-        floors.get(floorNumber).setSummoned(true);
         if (direction == 1) {
             floors.get(floorNumber).setContinueUp(true);
         } else if (direction == -1){

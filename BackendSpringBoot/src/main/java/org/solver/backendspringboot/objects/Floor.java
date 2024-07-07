@@ -10,7 +10,6 @@ public class Floor {
     private boolean continueUp;
     private boolean continueDown;
     private boolean isTarget;
-    private boolean isSummoned;
     private boolean isOperatorFloor;
 
     public Floor() {
@@ -18,7 +17,6 @@ public class Floor {
         this.continueUp = false;
         this.continueDown = false;
         this.isTarget = false;
-        this.isSummoned = false;
         this.isOperatorFloor = false;
     }
 }
