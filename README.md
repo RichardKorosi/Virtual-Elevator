@@ -1,4 +1,21 @@
 # SolverIT
+## Návod na spustenie
+Na spustenie Spring Boot treba v podpriečinku `\BackendSpringBoot` v termináli zadať príkaz `./mvnw spring-boot:run` (localhost:8080)
+
+Na sputenie Frontend časti treba v podpriečinku `\FrontendAngular` v terminali zadať príkaz `ng serve` (localhost:4200)
+
+## Výsledok
+### Informácie o stave výťahu sa dajú kedykoľvek získať cez HTTP GET request
+Získanie všetkých informácii o výťahu a poschodiach: `http://localhost:8080/initialInfo`
+### Vizuálny príklad fungovania
+![image](https://github.com/RichardKorosi/Virtual-Elevator/assets/99643046/b734d8cb-74a6-41b1-931b-e0d07ab2f1c6)
+![image](https://github.com/RichardKorosi/Virtual-Elevator/assets/99643046/23d5d7fa-594b-4c18-879b-78debe3f9369)
+
+
+
+
+
+## Zadanie
 
 Testovacie zadanie Solver IT s.r.o., "Výťah":
 Jednoduchá aplikácia pre ovládanie virtuálneho výťahu.
