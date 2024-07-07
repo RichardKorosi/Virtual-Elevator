@@ -39,17 +39,26 @@ public class ElevatorService {
     }
 
     public int getFurthestFloorInDirection(List<Floor> floors, Elevator elevator) {
-        int furthestFloor = 0;
-        for (Floor floor : floors) {
-            if (elevator.getMovement() == 1 && floor.getFloorNumber() > furthestFloor &&
-                    (floor.isContinueUp() || floor.isContinueDown() || floor.isTarget())) {
-                furthestFloor = floor.getFloorNumber();
+        if (elevator.getMovement() == 1) {
+            int furthestFloor = 0;
+            for (Floor floor : floors) {
+                if (floor.getFloorNumber() > furthestFloor && (floor.isContinueUp() || floor.isContinueDown() || floor.isTarget())) {
+                    furthestFloor = floor.getFloorNumber();
+                }
             }
-            if (elevator.getMovement() == -1 && floor.getFloorNumber() < furthestFloor &&
-                    (floor.isContinueUp() || floor.isContinueDown() || floor.isTarget())) {
-                furthestFloor = floor.getFloorNumber();
-            }
+            return furthestFloor;
         }
-        return furthestFloor;
+
+        else if (elevator.getMovement() == -1) {
+            int furthestFloor = floors.size();
+            for (Floor floor : floors) {
+                if (floor.getFloorNumber() < furthestFloor && (floor.isContinueUp() || floor.isContinueDown() || floor.isTarget())) {
+                    furthestFloor = floor.getFloorNumber();
+                }
+            }
+            System.out.println(furthestFloor);
+            return furthestFloor;
+        }
+        return elevator.getCurrentFloor();
     }
 }

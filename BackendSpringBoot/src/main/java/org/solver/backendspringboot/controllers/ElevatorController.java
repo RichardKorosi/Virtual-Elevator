@@ -42,14 +42,14 @@ public class ElevatorController {
             elevator.setMovement(elevatorService.idleElevatorCheck(floors, elevator));
             elevator.setDoorOpen(false);
         }
-//      MOVE ELEVATOR
+
+//      MOVE UP
         if (elevator.getMovement() == 1) {
             int furthestFloor = elevatorService.getFurthestFloorInDirection(floors, elevator);
-            System.out.println(furthestFloor);
 
-            if (floors.get(elevator.getCurrentFloor()).isTarget() ||
-                    floors.get(elevator.getCurrentFloor()).isContinueUp()
-             && elevator.getCurrentFloor() == furthestFloor){
+            if ((floors.get(elevator.getCurrentFloor()).isTarget() ||
+                    floors.get(elevator.getCurrentFloor()).isContinueUp())
+                    && elevator.getCurrentFloor() != furthestFloor){
                 floors.get(elevator.getCurrentFloor()).setTarget(false);
                 floors.get(elevator.getCurrentFloor()).setContinueUp(false);
                 elevator.setDoorOpen(true);
@@ -75,13 +75,13 @@ public class ElevatorController {
             elevator.setCurrentFloor(elevator.getCurrentFloor() + 1);
         }
 
+//      MOVE DOWN
         if (elevator.getMovement() == -1) {
             int furthestFloor = elevatorService.getFurthestFloorInDirection(floors, elevator);
-            System.out.println(furthestFloor);
 
-            if (floors.get(elevator.getCurrentFloor()).isTarget() ||
-                    floors.get(elevator.getCurrentFloor()).isContinueDown()
-                    && elevator.getCurrentFloor() == furthestFloor){
+            if ((floors.get(elevator.getCurrentFloor()).isTarget() ||
+                    floors.get(elevator.getCurrentFloor()).isContinueDown())
+                    && elevator.getCurrentFloor() != furthestFloor){
                 floors.get(elevator.getCurrentFloor()).setTarget(false);
                 floors.get(elevator.getCurrentFloor()).setContinueDown(false);
                 elevator.setDoorOpen(true);
