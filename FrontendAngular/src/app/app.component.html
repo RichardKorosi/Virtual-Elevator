@@ -19,7 +19,6 @@
       </button>
       <button [ngStyle]="{'background-color' : elevator.movement > 0 ? 'yellowgreen' : 'wheat'}">↑</button>
       <button [ngStyle]="{'background-color' : elevator.movement < 0 ? 'yellowgreen' : 'wheat'}">↓</button>
-      <button [ngStyle]="{'background-color' : elevator.movement === 0 ? 'yellowgreen' : 'wheat'}">🛑</button>
       <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 0 ? 'block' : 'none'}">

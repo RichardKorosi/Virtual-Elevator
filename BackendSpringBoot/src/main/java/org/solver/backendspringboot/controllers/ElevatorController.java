@@ -3,6 +3,7 @@ package org.solver.backendspringboot.controllers;
 import lombok.Getter;
 import org.solver.backendspringboot.objects.Elevator;
 import org.solver.backendspringboot.objects.Floor;
+import org.solver.backendspringboot.services.ElevatorService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,12 @@ import java.util.List;
 public class ElevatorController {
     Elevator elevator;
     List<Floor> floors;
+    ElevatorService elevatorService;
 
     public ElevatorController() {
         elevator = new Elevator();
         floors = new ArrayList<>();
+        elevatorService = new ElevatorService();
         for (int i = 0; i < 10; i++) {
             Floor floor = new Floor();
             floor.setFloorNumber(i);
@@ -32,9 +35,78 @@ public class ElevatorController {
 
     @GetMapping("/elevatorTick")
     public InfoWrapper elevatorTick() {
-//        check if elevator is at summoned floor
+        boolean anyFloorRequest = ElevatorService.checkFloorRequests(floors);
+
+//      IF ELEVATOR IS IDLE AND WAITING FOR REQUESTS
+        if (elevator.getMovement() == 0 && anyFloorRequest) {
+            elevator.setMovement(elevatorService.idleElevatorCheck(floors, elevator));
+            elevator.setDoorOpen(false);
+        }
+//      MOVE ELEVATOR
+        if (elevator.getMovement() == 1) {
+            int furthestFloor = elevatorService.getFurthestFloorInDirection(floors, elevator);
+            System.out.println(furthestFloor);
+
+            if (floors.get(elevator.getCurrentFloor()).isTarget() ||
+                    floors.get(elevator.getCurrentFloor()).isContinueUp()
+             && elevator.getCurrentFloor() == furthestFloor){
+                floors.get(elevator.getCurrentFloor()).setTarget(false);
+                floors.get(elevator.getCurrentFloor()).setContinueUp(false);
+                elevator.setDoorOpen(true);
+                System.out.println("HERE");
+                return new InfoWrapper(elevator, floors);
+            }
+
+            if (elevator.getCurrentFloor() == furthestFloor) {
+                elevator.setMovement(0);
+                floors.get(elevator.getCurrentFloor()).setTarget(false);
+                floors.get(elevator.getCurrentFloor()).setContinueUp(false);
+                floors.get(elevator.getCurrentFloor()).setContinueDown(false);
+                elevator.setDoorOpen(true);
+                System.out.println("HERE2");
+                return new InfoWrapper(elevator, floors);
+            }
+
+            if (elevator.isDoorOpen() && elevator.getMovement() != 0){
+                elevator.setDoorOpen(false);
+                return new InfoWrapper(elevator, floors);
+            }
+
+            elevator.setCurrentFloor(elevator.getCurrentFloor() + 1);
+        }
+
+        if (elevator.getMovement() == -1) {
+            int furthestFloor = elevatorService.getFurthestFloorInDirection(floors, elevator);
+            System.out.println(furthestFloor);
+
+            if (floors.get(elevator.getCurrentFloor()).isTarget() ||
+                    floors.get(elevator.getCurrentFloor()).isContinueDown()
+                    && elevator.getCurrentFloor() == furthestFloor){
+                floors.get(elevator.getCurrentFloor()).setTarget(false);
+                floors.get(elevator.getCurrentFloor()).setContinueDown(false);
+                elevator.setDoorOpen(true);
+                return new InfoWrapper(elevator, floors);
+            }
+
+            if (elevator.getCurrentFloor() == furthestFloor) {
+                elevator.setMovement(0);
+                floors.get(elevator.getCurrentFloor()).setTarget(false);
+                floors.get(elevator.getCurrentFloor()).setContinueDown(false);
+                floors.get(elevator.getCurrentFloor()).setContinueUp(false);
+                elevator.setDoorOpen(true);
+                return new InfoWrapper(elevator, floors);
+            }
+
+            if (elevator.isDoorOpen() && elevator.getMovement() != 0){
+                elevator.setDoorOpen(false);
+                return new InfoWrapper(elevator, floors);
+            }
+
+            elevator.setCurrentFloor(elevator.getCurrentFloor() - 1);
+        }
         return new InfoWrapper(elevator, floors);
     }
+
 
     @GetMapping("/initialInfo")
     public InfoWrapper getInitialInfo() {

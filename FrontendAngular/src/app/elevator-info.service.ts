@@ -54,7 +54,5 @@ export class ElevatorInfoService {
   chooseTarget(floor: number): Observable<any> {
     return this.http.get<any>(this.baseURL+"/chooseTarget/"+floor);
   }
-  
-
 
 }

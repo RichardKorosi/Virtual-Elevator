@@ -48,12 +48,24 @@ export class AppComponent {
 
   ngOnInit(): void {
     setInterval(() => {
-      // this.elevatorTick();
-    }, 10000); // Call increment() every 2 seconds
+      this.elevatorTick();
+    }, 2000);
   }
 
   elevatorTick() : void {
     this.elevatorInfoService.elevatorTick().subscribe(data => {
+      for (let i = 0; i < data.floors.length; i++) {
+        this.floors[i].floorNumber = data.floors[i].floorNumber;
+        this.floors[i].continueUp = data.floors[i].continueUp;
+        this.floors[i].continueDown = data.floors[i].continueDown;
+        this.floors[i].isTarget = data.floors[i].target;
+        this.floors[i].isOperatorFloor = data.floors[i].operatorFloor;
+      }
+
+      this.elevator.movement = data.elevator.movement;
+      this.elevator.isDoorOpen = data.elevator.doorOpen;
+      this.elevator.peopleInside = data.elevator.peopleInside;
+      this.elevator.currentFloor = data.elevator.currentFloor;
     });
   }
 
