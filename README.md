@@ -1,4 +1,4 @@
-# SolverIT
+# Virtuálna simulácia výťahu
 ## Návod na spustenie
 Na spustenie Spring Boot treba v podpriečinku `\BackendSpringBoot` v termináli zadať príkaz `./mvnw spring-boot:run` (localhost:8080)
 
