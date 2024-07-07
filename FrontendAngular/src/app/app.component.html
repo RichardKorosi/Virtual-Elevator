@@ -2,6 +2,7 @@
 
   <nav class ="left">  
     <div [ngStyle]="{'visibility' : view === 0 ? 'visible' : 'hidden'}">
+      <span>Operator</span>
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': operatorCurrentFloor.floorNumber === floor.floorNumber ? 'lightpink' : 'cyan'}" 
       class="floor-button" (click)="changeOperatorFloor(floor.floorNumber)">
@@ -11,7 +12,8 @@
   </nav>
 
   <nav class ="right">  
-    <div class="elevatorFloorWrapper" style="visibility: visible;">
+    <div class="elevatorFloorWrapper">
+      <span style="display: block;">Elevator info</span>
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': elevator.currentFloor === floor.floorNumber ? 'yellowgreen' : 'wheat'}" 
       class="floor-button">
@@ -22,15 +24,22 @@
       <button [ngStyle]="{'background-color' : elevator.isDoorOpen === true ? 'yellowgreen' : 'wheat'}">🚪🚪</button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 0 ? 'block' : 'none'}">
+        <span style="display: block;">User controls</span>
         <button (click)="callElevator(1)" class="callButton" 
-          [ngStyle]="{'background-color': (operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}">↑
+        [ngStyle]="{'background-color': (operatorCurrentFloor.continueUp === true) ? 'yellowgreen' : 'wheat'}"
+        [disabled]="elevator.currentFloor == operatorCurrentFloor.floorNumber">↑
         </button>
         <button (click)="callElevator(-1)" class="callButton" 
-        [ngStyle]="{'background-color': (operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}">↓
+                [ngStyle]="{'background-color': (operatorCurrentFloor.continueDown === true) ? 'yellowgreen' : 'wheat'}"
+                [disabled]="elevator.currentFloor == operatorCurrentFloor.floorNumber">↓
         </button>
-        <button (click)="enterElevator()" [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)">ENTER</button>
+        <button (click)="enterElevator()" 
+        [disabled]="!(operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true)"
+        [ngStyle]="{'background-color': (operatorCurrentFloor.floorNumber === elevator.currentFloor && elevator.isDoorOpen === true) ? 'yellowgreen' : ''}">ENTER
+        </button>
     </div>
     <div style="margin-top: 3rem;" [ngStyle]="{'display' : view === 1 ? 'block' : 'none'}">
+      <span style="display: block;">User controls</span>
       <button *ngFor="let floor of floors; let i = index" 
       [ngStyle]="{'background-color': (floor.continueUp === true || floor.continueDown === true || floor.isTarget === true) ? 'lightcoral' : 'lightblue'}" 
       class="floor-button" (click)="chooseTarget(floor.floorNumber)">
